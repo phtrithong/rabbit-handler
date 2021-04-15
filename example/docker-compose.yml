@@ -1,0 +1,21 @@
+services:
+  rabbitHandler-rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitHandler-rabbitmq
+    volumes:
+        - rabbitmq_etc:/etc/rabbitmq/
+        - rabbitmq_data:/var/lib/rabbitmq/
+        - rabbitmq_log:/var/log/rabbitmq/
+    environment:
+        RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE}
+        RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+        RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+        - ${RABBITMQ_PORT}:5672
+        - ${RABBITMQ_WEB_PORT}:15672
+
+volumes:
+  rabbitmq_etc:
+  rabbitmq_data:
+  rabbitmq_log:
+
